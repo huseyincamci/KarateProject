@@ -22,3 +22,10 @@ Feature: Tests for the home page
         Given url "https://conduit-api.bondaracademy.com/api/articles"
         When method Get
         Then status 200
+
+    Scenario: Get 10 articles from the page by object param
+        Given params {limit: 10, offset: 0}
+        Given url "https://conduit-api.bondaracademy.com/api/"
+        Given path "articles"
+        When method Get
+        Then status 200
