@@ -37,7 +37,7 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}  # Secrets'den EMAIL alınıyor
           PASSWORD: ${{ secrets.PASSWORD }}  # Secrets'den PASSWORD alınıyor
         run: |
-          mvn test
+          mvn clean test
 
       # Step 5: Upload Karate Reports (Optional)
       - name: Upload Karate Reports
