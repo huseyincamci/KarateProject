@@ -6,8 +6,8 @@ Background: Define URL
 
 
     Scenario: Create new article
-        * def email = env.EMAIL
-        * def password = env.PASSWORD
+        * def email = java.lang.System.getenv('EMAIL')
+        * def password = java.lang.System.getenv('PASSWORD')
         * karate.log("deneme " + email)
 
         Given path "users/login"
@@ -18,7 +18,7 @@ Background: Define URL
 
         Given header Authorization = 'Token ' + token
         Given path 'articles'
-        * def randomTitle = "Post Random Title " + Math.floor(karate.random() * 10000)
+        * def randomTitle = "Post Random Title " + Math.floor(Math.random() * 10000)
         
         And request {"article":{"title": "#(randomTitle)","description":"fadsf adfs f","body":"tetset est e","tagList":["tatat"]}}
         When method Post
