@@ -8,7 +8,6 @@ Background: Define URL
     Scenario: Create new article
         * def email = email
         * def password = password
-        * karate.log("deneme " + email)
 
         Given path "users/login"
         And request { "user": { "email": "#(email)", "password": "#(password)" } }
