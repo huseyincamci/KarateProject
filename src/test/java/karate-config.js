@@ -6,7 +6,9 @@ function fn() {
   }
   var config = {
     env: env,
-    myVarName: 'someValue'
+    myVarName: 'someValue',
+    email: Java.type('java.lang.System').getenv('EMAIL'),
+    password: Java.type('java.lang.System').getenv('PASSWORD')
   }
   if (env == 'dev') {
     // customize

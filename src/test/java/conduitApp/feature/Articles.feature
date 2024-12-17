@@ -6,8 +6,8 @@ Background: Define URL
 
 
     Scenario: Create new article
-        * def email = java.lang.System.getenv('EMAIL')
-        * def password = java.lang.System.getenv('PASSWORD')
+        * def email = email
+        * def password = password
         * karate.log("deneme " + email)
 
         Given path "users/login"
