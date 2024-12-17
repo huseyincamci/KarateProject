@@ -34,7 +34,7 @@ jobs:
       # Step 4: Build and run tests
       - name: Run Karate Tests
         env:
-          EMAIL: ${{ secrets.EMAIL }}  # Secrets'den EMAIL alınıyor
+          EMAIL: 'test@test.com'  # Secrets'den EMAIL alınıyor
           PASSWORD: ${{ secrets.PASSWORD }}  # Secrets'den PASSWORD alınıyor
         run: |
           mvn clean test
