@@ -39,9 +39,3 @@ jobs:
         run: |
           mvn clean test
 
-      # Step 5: Upload Karate Reports (Optional)
-      - name: Upload Karate Reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: karate-reports
-          path: target/karate-reports/
