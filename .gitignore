@@ -1,0 +1,51 @@
+# VSCode özel ayarları
+.vscode/
+.vscode/**
+
+# Maven derleme klasörü
+target/
+*.jar
+*.war
+*.ear
+
+# Karate raporları ve test çıktıları
+karate-reports/
+surefire-reports/
+*.log
+
+# Temp dosyaları
+*.tmp
+*.bak
+*.swp
+
+# İşletim Sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# IDE yapılandırmaları
+.idea/
+*.iml
+*.ipr
+.project
+.classpath
+.settings/
+
+# Gradle Wrapper ve build klasörü
+.gradle/
+build/
+
+# Kullanıcı yapılandırma dosyaları
+*.properties
+config*.json
+secrets.yml
+
+# Node.js modülleri (frontend veya karma testler için)
+node_modules/
+
+# Test verileri ve örnek dosyalar
+*.csv
+*.xlsx
+test-data/
+
+# Java sınıf dosyaları
+*.class
