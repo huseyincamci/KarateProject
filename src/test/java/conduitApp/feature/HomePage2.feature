@@ -30,3 +30,15 @@ Background: Define URL
         Then status 200
         And match response.articles == "#[10]"
         And match response.articlesCount == 10
+
+
+
+    # To run tests by tag name: mvn clean test -D'karate.options="--tags @debug"'
+    @debug
+    Scenario: Get 10 articles from the page by object param and run by tags
+        Given params {limit: 10, offset: 0}
+        Given path "articles"
+        When method Get
+        Then status 200
+        And match response.articles == "#[10]"
+        And match response.articlesCount == 10

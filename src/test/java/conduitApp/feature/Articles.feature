@@ -5,6 +5,8 @@ Background: Define URL
     Given url "https://conduit-api.bondaracademy.com/api/"
 
 
+    #@ignore
+    # if you want to skip test then use @ignore tag name
     Scenario: Create new article
         * def email = email
         * def password = password
