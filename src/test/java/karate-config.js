@@ -5,16 +5,21 @@ function fn() {
     env = 'dev';
   }
   var config = {
-    env: env,
-    myVarName: 'someValue',
+    apiUrl: 'https://conduit-api.bondaracademy.com/api/',
     email: Java.type('java.lang.System').getenv('EMAIL'),
     password: Java.type('java.lang.System').getenv('PASSWORD')
   }
+
+  // If we want to run tests from the command prompt based on the environment type, we use -Dkarate.env='dev' or whatever the name of the environment is.
+  // mvn test -Dkarate.env='dev'
   if (env == 'dev') {
-    // customize
-    // e.g. config.foo = 'bar';
-  } else if (env == 'e2e') {
-    // customize
+    config.articlesPath = 'articles'
+  } else if (env == 'qa') {
+    //env variables for qa
   }
+
+  var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature', config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
+
   return config;
 }

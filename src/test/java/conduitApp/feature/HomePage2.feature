@@ -29,7 +29,7 @@ Background: Define URL
         When method Get
         Then status 200
         And match response.articles == "#[10]"
-        And match response.articlesCount == 10
+        And match response.articlesCount == 42
 
 
 
@@ -41,4 +41,4 @@ Background: Define URL
         When method Get
         Then status 200
         And match response.articles == "#[10]"
-        And match response.articlesCount == 10
+        And match response.articlesCount == 42

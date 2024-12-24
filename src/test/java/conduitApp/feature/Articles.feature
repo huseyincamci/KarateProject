@@ -2,7 +2,7 @@ Feature: Articles Post Requests
 
 
 Background: Define URL
-    Given url "https://conduit-api.bondaracademy.com/api/"
+    Given url apiUrl
 
     #@ignore
     # if you want to skip test then use @ignore tag name
@@ -16,11 +16,11 @@ Background: Define URL
         # Then status 200
         # * def token = response.user.token
 
-        * def tokenResponse = call read('classpath:helpers/CreateToken.feature')
-        * def token = tokenResponse.authToken
+        # * def tokenResponse = call read('classpath:helpers/CreateToken.feature')
+        # * def token = tokenResponse.authToken
 
-        Given header Authorization = 'Token ' + token
-        Given path 'articles'
+        # Given header Authorization = 'Token ' + token
+        Given path articlesPath
         * def randomTitle = "Post Random Title " + Math.floor(Math.random() * 10000)
         
         And request {"article":{"title": "#(randomTitle)","description":"fadsf adfs f","body":"tetset est e","tagList":["tatat"]}}
@@ -38,10 +38,10 @@ Background: Define URL
         # When method Post
         # Then status 200
         # * def token = response.user.token
-        * def tokenResponse = call read('classpath:helpers/CreateToken.feature')
-        * def token = tokenResponse.authToken
+        # * def tokenResponse = call read('classpath:helpers/CreateToken.feature')
+        # * def token = tokenResponse.authToken
 
-        Given header Authorization = 'Token ' + token
+        # Given header Authorization = 'Token ' + token
         Given path 'articles'
         * def randomTitle = "Delete Article Random Title " + Math.floor(Math.random() * 10000)
         
@@ -56,7 +56,7 @@ Background: Define URL
         Then status 200
         #And match response.articles[0].title == randomTitle
 
-        Given header Authorization = 'Token ' + token
+        # Given header Authorization = 'Token ' + token
         Given path "articles",articleId
         When method Delete
         Then status 204
