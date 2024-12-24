@@ -4,18 +4,20 @@ Feature: Articles Post Requests
 Background: Define URL
     Given url "https://conduit-api.bondaracademy.com/api/"
 
-
     #@ignore
     # if you want to skip test then use @ignore tag name
     Scenario: Create new article
-        * def email = email
-        * def password = password
+        # * def email = email
+        # * def password = password
 
-        Given path "users/login"
-        And request { "user": { "email": "#(email)", "password": "#(password)" } }
-        When method Post
-        Then status 200
-        * def token = response.user.token
+        # Given path "users/login"
+        # And request { "user": { "email": "#(email)", "password": "#(password)" } }
+        # When method Post
+        # Then status 200
+        # * def token = response.user.token
+
+        * def tokenResponse = call read('classpath:helpers/CreateToken.feature')
+        * def token = tokenResponse.authToken
 
         Given header Authorization = 'Token ' + token
         Given path 'articles'
@@ -28,14 +30,16 @@ Background: Define URL
 
 
     Scenario: Create and delete article
-        * def email = email
-        * def password = password
+        # * def email = email
+        # * def password = password
 
-        Given path "users/login"
-        And request { "user": { "email": "#(email)", "password": "#(password)" } }
-        When method Post
-        Then status 200
-        * def token = response.user.token
+        # Given path "users/login"
+        # And request { "user": { "email": "#(email)", "password": "#(password)" } }
+        # When method Post
+        # Then status 200
+        # * def token = response.user.token
+        * def tokenResponse = call read('classpath:helpers/CreateToken.feature')
+        * def token = tokenResponse.authToken
 
         Given header Authorization = 'Token ' + token
         Given path 'articles'
@@ -56,5 +60,5 @@ Background: Define URL
         Given path "articles",articleId
         When method Delete
         Then status 204
-        
+
 
