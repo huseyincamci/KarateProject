@@ -7,6 +7,7 @@ Background: Define URL
         Given path "tags"
         When method Get
         Then status 200
+        And match response.tags contains any ['fish', 'dog', 'GitHub']
 
     Scenario: Get all tags and validate response data
         Given path "tags"
@@ -29,7 +30,7 @@ Background: Define URL
         When method Get
         Then status 200
         And match response.articles == "#[10]"
-       # And match response.articlesCount == 42
+        And match response.articlesCount != 42
 
 
 
@@ -41,4 +42,8 @@ Background: Define URL
         When method Get
         Then status 200
         And match response.articles == "#[10]"
+        And match response.articles[0].createdAt contains '2024'
+        And match response.articles[*].favoritesCount contains 0
+        And match response..bio contains null
+        And match each response..following == false
        # And match response.articlesCount == 42
