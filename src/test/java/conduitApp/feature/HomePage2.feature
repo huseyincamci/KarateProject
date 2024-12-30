@@ -37,6 +37,7 @@ Background: Define URL
     # To run tests by tag name: mvn clean test -D'karate.options="--tags @debug"'
     @debug
     Scenario: Get 10 articles from the page by object param and run by tags
+        * def timeValidator = read('classpath:helpers/timeValidator.js')
         Given params {limit: 10, offset: 0}
         Given path "articles"
         When method Get
@@ -50,3 +51,23 @@ Background: Define URL
         And match each response..favoritesCount == '#number'
         And match each response..bio == '##string'
        # And match response.articlesCount == 42
+        And match each response.articles == 
+        """
+            {
+                "slug": "#string",
+                "title": "#string",
+                "description": "#string",
+                "body": "#string",
+                "tagList": "#array",
+                "createdAt": "#? timeValidator(_)",
+                "updatedAt": "#? timeValidator(_)",
+                "favorited": '#boolean',
+                "favoritesCount": '#number',
+                "author": {
+                    "username": "#string",
+                    "bio": '##string',
+                    "image": "#string",
+                    "following": '#boolean'
+                }
+            }
+        """
