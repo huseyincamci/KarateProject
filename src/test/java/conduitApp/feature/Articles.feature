@@ -2,7 +2,12 @@ Feature: Articles Post Requests
 
 
 Background: Define URL
-    Given url apiUrl
+    * url apiUrl
+    * def articleRequestBody = read('classpath:conduitApp/json/newArticleRequest.json')
+    * def dataGenerator = Java.type('helpers.DataGenerator')
+    * set articleRequestBody.article.title = dataGenerator.getRandomArticleValues().title
+    * set articleRequestBody.article.description = dataGenerator.getRandomArticleValues().description
+    * set articleRequestBody.article.body = dataGenerator.getRandomArticleValues().body
 
     #@ignore
     # if you want to skip test then use @ignore tag name
@@ -23,10 +28,11 @@ Background: Define URL
         Given path articlesPath
         * def randomTitle = "Post Random Title " + Math.floor(Math.random() * 10000)
         
-        And request {"article":{"title": "#(randomTitle)","description":"fadsf adfs f","body":"tetset est e","tagList":["tatat"]}}
+        #And request {"article":{"title": "#(randomTitle)","description":"fadsf adfs f","body":"tetset est e","tagList":["tatat"]}}
+        And request articleRequestBody
         When method Post
         Then status 201
-        And match response.article.title == randomTitle
+        And match response.article.title == articleRequestBody.article.title
 
 
     Scenario: Create and delete article

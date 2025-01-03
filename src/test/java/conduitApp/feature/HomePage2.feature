@@ -43,7 +43,7 @@ Background: Define URL
         When method Get
         Then status 200
         And match response.articles == "#[10]"
-        And match response.articles[0].createdAt contains '2024'
+        And match response.articles[0].createdAt contains '2025'
         And match response.articles[*].favoritesCount contains 0
         And match response..bio contains null
         And match each response..following == false
